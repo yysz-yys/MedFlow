@@ -1,0 +1,33 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# Uploads
+uploads/
+MedFlow-backend/uploads/
+
+# Alembic
+MedFlow-backend/alembic/versions/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Dependencies & build
+node_modules/
+package-lock.json
+
+# Tool caches
+.codegraph/
+.superpowers/

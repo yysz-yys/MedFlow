@@ -1,0 +1,7 @@
+/* 管理员端主题：深色专业风 */
+:root {
+  --el-color-primary: #1890ff;
+  --el-menu-bg-color: #001529;
+  --el-menu-text-color: #ffffff80;
+  --el-menu-active-color: #ffffff;
+}

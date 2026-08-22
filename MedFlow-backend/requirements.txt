@@ -1,0 +1,43 @@
+# ============================================================
+# 云诊易 MedFlow — 生产依赖
+# 安装：pip install -r requirements.txt
+# ============================================================
+
+# --- Web 框架 ---
+fastapi
+uvicorn[standard]
+
+# --- 数据库 ---
+sqlalchemy[asyncio]
+asyncmy
+alembic
+pymysql
+
+# --- 配置 ---
+pydantic-settings
+
+# --- 认证 ---
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt==4.0.1
+python-multipart
+
+# --- 邮箱 ---
+aiosmtplib
+email-validator
+
+# --- 文件 ---
+aiofiles
+python-dotenv
+filetype
+
+# --- 图形验证码 ---
+Pillow
+
+# --- 定时任务 ---
+apscheduler
+
+# --- 测试 ---
+httpx
+pytest
+pytest-asyncio

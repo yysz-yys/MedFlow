@@ -1,0 +1,12 @@
+{
+  "name": "medflow-frontend",
+  "private": true,
+  "scripts": {
+    "dev:admin": "pnpm --filter @medflow/admin dev",
+    "dev:doctor": "pnpm --filter @medflow/doctor dev",
+    "dev:patient": "pnpm --filter @medflow/patient dev",
+    "build:admin": "pnpm --filter @medflow/admin build",
+    "build:doctor": "pnpm --filter @medflow/doctor build",
+    "build:patient": "pnpm --filter @medflow/patient build"
+  }
+}

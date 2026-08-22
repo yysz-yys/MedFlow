@@ -1,0 +1,9 @@
+node_modules
+dist
+.vite
+*.local
+*.vue.js
+# stray compiled JS in source dirs (all source is TS/Vue)
+packages/admin/src/**/*.js
+packages/doctor/src/**/*.js
+packages/patient/src/**/*.js
