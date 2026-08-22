@@ -1,0 +1,1 @@
+import{z as e}from"./index-Cvvu4dHN.js";function o(t){return e.get("/system-config",{params:t})}function i(t){return e.post("/system-config",t)}function r(t,n){return e.put(`/system-config/${t}`,n)}function f(t){return e.delete(`/system-config/${t}`)}function u(t){return e.get("/system-config/by-key",{params:{key:t}})}export{i as c,f as d,u as g,o as l,r as u};

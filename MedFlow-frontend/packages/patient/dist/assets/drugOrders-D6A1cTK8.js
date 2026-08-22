@@ -1,0 +1,1 @@
+import{z as e}from"./index-DwrcdpeA.js";function o(r){return e.get("/drug-orders",{params:r})}function s(r){return e.post(`/drug-orders/${r}/cancel`)}function u(r){return e.post(`/drug-orders/${r}/complete`)}function n(r){return e.post(`/drug-orders/${r}/uncomplete`)}function d(r){return e.post(`/drug-orders/${r}/restore`)}export{u as a,s as c,o as l,d as r,n as u};

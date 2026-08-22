@@ -1,0 +1,1 @@
+import{z as t}from"./index-Cvvu4dHN.js";function s(r){return t.get("/drugs",{params:r})}function n(r){return t.post("/drugs",r)}function o(r,u){return t.put(`/drugs/${r}`,u)}function g(r){return t.delete(`/drugs/${r}`)}function a(r){return t.put(`/drugs/${r}/restore`)}function d(r,u){return t.put(`/drugs/${r}/stock`,{change:u})}export{d as a,n as c,g as d,s as l,a as r,o as u};

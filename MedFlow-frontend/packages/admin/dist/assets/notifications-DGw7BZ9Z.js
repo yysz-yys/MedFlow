@@ -1,0 +1,1 @@
+import{z as n}from"./index-Cvvu4dHN.js";function o(){return n.get("/notifications/unread-count")}function a(t){return n.post("/notifications",t)}function e(t){return n.get("/notifications/admin",{params:t})}export{e as a,a as c,o as g};

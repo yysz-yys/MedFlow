@@ -1,0 +1,1 @@
+import{z as n}from"./index-BMDgqFEn.js";function o(t){return n.get("/notifications",{params:t})}function r(){return n.get("/notifications/unread-count")}function a(t){return n.put(`/notifications/${t}/read`)}export{r as g,o as l,a as m};
