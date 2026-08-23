@@ -1,0 +1,1 @@
+import{z as e}from"./index-iJ5uy5Gl.js";function a(t){return e.get("/departments",{params:t})}function s(t){return e.post("/departments",t)}function p(t,r){return e.put(`/departments/${t}`,r)}function u(t){return e.delete(`/departments/${t}`)}function m(t){return e.put(`/departments/${t}/restore`)}export{s as c,u as d,a as l,m as r,p as u};

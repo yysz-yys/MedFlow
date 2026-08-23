@@ -1,0 +1,1 @@
+import{z as n}from"./index-CzVPjGB_.js";function p(t){return n.get("/appointments",{params:t})}function o(t){return n.post(`/appointments/${t}/complete`)}function m(t){return n.post(`/appointments/${t}/uncomplete`)}export{o as c,p as l,m as u};
