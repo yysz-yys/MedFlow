@@ -102,7 +102,7 @@ async function fetchData() {
       diagnosisRecordsApi.listDiagnosisRecords(),
     ])
     list.value = prescriptions.data
-    drugList.value = drugs.data
+    drugList.value = drugs.data.items
     diagnosisList.value = diagnoses.data
   } finally { loading.value = false }
 }

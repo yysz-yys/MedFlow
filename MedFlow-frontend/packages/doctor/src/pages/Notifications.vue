@@ -82,7 +82,7 @@ import { Message } from '@element-plus/icons-vue'
 import { notificationsApi, formatDateTime } from '@medflow/shared'
 import type { Notification } from '@medflow/shared'
 
-const tabs = [
+const tabs: { key: TabKey; label: string }[] = [
   { key: 'APPOINTMENT', label: '挂号通知' },
   { key: 'SYSTEM', label: '系统通知' },
 ]

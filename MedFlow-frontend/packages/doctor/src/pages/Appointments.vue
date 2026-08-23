@@ -39,7 +39,7 @@
           </template>
           <template v-else>-</template>
         </div>
-        <div class="card-time">挂号: {{ formatTime(item.appointment_time) }}</div>
+        <div class="card-time">挂号: {{ formatFullDateTime(item.created_at) }}</div>
         <div class="card-status">
           <el-tag :type="statusTagType(item.status)" size="small">{{ statusLabel(item.status) }}</el-tag>
         </div>
@@ -211,6 +211,18 @@ function formatDate(iso: string | null): string {
 function formatTime(iso: string | null): string {
   if (!iso) return '-'
   return iso.slice(11, 16)
+}
+
+/** 诊断时间：7月12日 周一 08:30 */
+function formatDateTime(iso: string | null): string {
+  if (!iso) return '-'
+  return formatDate(iso) + ' ' + formatTime(iso)
+}
+
+/** 挂号时间：2026-07-12 08:00:00 */
+function formatFullDateTime(iso: string | null): string {
+  if (!iso) return '-'
+  return iso.replace('T', ' ').slice(0, 19)
 }
 
 function isToday(iso: string | null): boolean {

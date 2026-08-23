@@ -1,0 +1,26 @@
+# MedFlow 后端 systemd 服务
+# 用法：复制到 /etc/systemd/system/medflow-backend.service，然后：
+#   systemctl daemon-reload
+#   systemctl enable --now medflow-backend
+#
+# 注意：
+#   - 后端 .env 在 /srv/medflow/MedFlow-backend/.env（根据实际部署路径改 WorkingDirectory）
+#   - uploads 目录在 WorkingDirectory 下，随服务持久化，别放 /tmp
+#   - 定时任务（预约提醒等）随此进程启动
+
+[Unit]
+Description=MedFlow Backend (uvicorn)
+After=network.target mysql.service
+Wants=mysql.service
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/srv/medflow/MedFlow-backend
+ExecStart=/srv/medflow/MedFlow-backend/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000
+Restart=always
+RestartSec=3
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

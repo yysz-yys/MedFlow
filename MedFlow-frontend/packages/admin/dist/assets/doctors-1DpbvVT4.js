@@ -1,1 +1,0 @@
-import{z as o}from"./index-Cvvu4dHN.js";function c(t){return o.get("/doctors",{params:t})}function s(t){return o.post("/doctors",t)}function n(t,r){return o.put(`/doctors/${t}`,r)}function u(t){return o.delete(`/doctors/${t}`)}function d(t){return o.put(`/doctors/${t}/restore`)}export{s as c,u as d,c as l,d as r,n as u};

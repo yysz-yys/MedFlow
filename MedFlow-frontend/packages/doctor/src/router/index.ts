@@ -60,6 +60,12 @@ const router = createRouter({
           meta: { title: '通知中心' },
         },
         {
+          path: 'schedules',
+          name: 'Schedules',
+          component: () => import('../pages/Schedules.vue'),
+          meta: { title: '我的排班' },
+        },
+        {
           path: 'profile',
           name: 'Profile',
           component: () => import('../pages/Profile.vue'),

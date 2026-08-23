@@ -10,6 +10,7 @@
     </div>
     <div class="week-actions">
       <span class="period-hint">{{ periods.hintShort }}</span>
+      <el-button size="small" :icon="Refresh" @click="$emit('refresh')" title="刷新排班">刷新</el-button>
       <el-dropdown @command="(type: string) => $emit('fillAll', type as any)">
         <el-button size="small">
           全部排满 <el-icon class="el-icon--right"><ArrowDown /></el-icon>
@@ -29,7 +30,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { ArrowLeft, ArrowRight, ArrowDown } from '@element-plus/icons-vue'
+import { ArrowLeft, ArrowRight, ArrowDown, Refresh } from '@element-plus/icons-vue'
 import { getWeekRange, formatDate } from '@/utils/week'
 import type { SchedulePeriods } from '@medflow/shared'
 
@@ -41,6 +42,7 @@ const emit = defineEmits<{
   'update:weekStart': [d: Date]
   fillAll: [type: 'morning' | 'afternoon' | 'full']
   editDefaultTemplate: []
+  refresh: []
 }>()
 
 const weekLabel = computed(() => {

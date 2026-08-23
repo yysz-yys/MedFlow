@@ -11,14 +11,16 @@
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column prop="created_at" label="创建时间" width="170" />
+      <el-table-column label="创建时间" width="170">
+        <template #default="{ row }">{{ formatDateTime(row.created_at) }}</template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { drugOrdersApi } from '@medflow/shared'
+import { drugOrdersApi, formatDateTime } from '@medflow/shared'
 import type { DrugOrder } from '@medflow/shared'
 
 const list = ref<DrugOrder[]>([])

@@ -2,7 +2,7 @@
   <div class="dept-sidebar">
     <el-input
       :model-value="searchKeyword"
-      placeholder="搜索科室"
+      placeholder="搜索科室/医生"
       clearable
       @input="$emit('update:searchKeyword', $event)"
       style="margin-bottom: 12px"
@@ -18,7 +18,7 @@
         <span class="dept-count">{{ doctorCountMap[dept.id] ?? 0 }}人</span>
       </div>
       <div v-if="filteredDepartments.length === 0" class="dept-empty">
-        无匹配科室
+        无匹配科室或医生
       </div>
     </div>
   </div>
@@ -26,10 +26,11 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Department } from '@medflow/shared'
+import type { Department, Doctor } from '@medflow/shared'
 
 const props = defineProps<{
   departments: Department[]
+  doctors: Doctor[]
   selectedDeptId: number | null
   searchKeyword: string
   doctorCountMap: Record<number, number>
@@ -43,7 +44,12 @@ defineEmits<{
 const filteredDepartments = computed(() => {
   if (!props.searchKeyword) return props.departments
   const kw = props.searchKeyword.toLowerCase()
-  return props.departments.filter(d => d.name.toLowerCase().includes(kw))
+  return props.departments.filter(d => {
+    if (d.name.toLowerCase().includes(kw)) return true
+    return props.doctors.some(
+      doc => doc.department_id === d.id && doc.name.toLowerCase().includes(kw)
+    )
+  })
 })
 </script>
 

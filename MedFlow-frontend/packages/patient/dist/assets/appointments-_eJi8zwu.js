@@ -1,1 +1,0 @@
-import{z as n}from"./index-DwrcdpeA.js";function p(t){return n.get("/appointments",{params:t})}function o(t){return n.post("/appointments",t)}function r(t){return n.post(`/appointments/${t}/cancel`)}function s(t){return n.post(`/appointments/${t}/restore`)}export{r as a,o as c,p as l,s as r};

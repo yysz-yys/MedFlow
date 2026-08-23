@@ -2,6 +2,7 @@
   <div class="page" style="display:flex;gap:16px;height:100%">
     <DepartmentSidebar
       :departments="departments"
+      :doctors="allDoctors"
       :selectedDeptId="selectedDeptId"
       :searchKeyword="deptSearch"
       :doctorCountMap="doctorCountMap"
@@ -16,6 +17,7 @@
         @update:weekStart="weekStart = $event"
         @fillAll="fillAll"
         @editDefaultTemplate="openDefaultTemplate"
+        @refresh="fetchSchedules"
       />
 
       <div style="flex:1;overflow:hidden;margin-top:12px" v-loading="loading">

@@ -32,7 +32,7 @@
               <div v-for="item in todayList" :key="item.id" class="apt-item">
                 <div class="apt-time">
                   <span class="dot"></span>
-                  <span>{{ periodLabel(item.schedule_start_time) }} {{ item.schedule_start_time?.slice(0, 5) || '--:--' }}-{{ item.schedule_end_time?.slice(0, 5) || '--:--' }}</span>
+                  <span>{{ periodLabel(item.schedule_start_time || item.appointment_time) }} {{ toTimeStr(item.schedule_start_time || item.appointment_time) }}-{{ toTimeStr(item.schedule_end_time || item.appointment_time) }}</span>
                 </div>
                 <div class="apt-info">
                   <div class="apt-name">{{ item.patient_name }}</div>
@@ -124,12 +124,16 @@ function monthStartStr(): string {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-01`
 }
 
+/** 获取本周一~周日的日期范围，与管理端排班周保持一致 */
 function getWeekRange(): { from: string; to: string } {
   const now = new Date()
-  const end = new Date(now)
-  end.setDate(now.getDate() + 6)
+  const day = now.getDay()
+  const monday = new Date(now)
+  monday.setDate(now.getDate() - day + (day === 0 ? -6 : 1))
+  const sunday = new Date(monday)
+  sunday.setDate(monday.getDate() + 6)
   const fmt = (d: Date) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
-  return { from: fmt(now), to: fmt(end) }
+  return { from: fmt(monday), to: fmt(sunday) }
 }
 
 const weekNames = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
@@ -140,10 +144,19 @@ function timeToMinutes(t: string): number {
   return h * 60 + m
 }
 
-/** 根据 schedule_start_time 和系统时段配置判断时段 */
+/** 从 schedule_start_time(HH:MM) 或 appointment_time(ISO) 中提取 HH:MM */
+function toTimeStr(value: string | null): string {
+  if (!value) return '--:--'
+  if (value.includes('T')) return value.split('T')[1]?.slice(0, 5) || '--:--'
+  return value.length >= 5 ? value.slice(0, 5) : '--:--'
+}
+
+/** 根据时间字符串(HH:MM 或 ISO)和系统时段配置判断时段 */
 function periodLabel(startTime: string | null): string {
   if (!startTime) return ''
-  const total = timeToMinutes(startTime.slice(0, 5))
+  const timeStr = toTimeStr(startTime)
+  if (timeStr === '--:--') return ''
+  const total = timeToMinutes(timeStr)
   const p = schedulePeriods.value
   if (total < timeToMinutes(p.afternoon.start)) return '上午'
   if (total < timeToMinutes(p.evening.start)) return '下午'
